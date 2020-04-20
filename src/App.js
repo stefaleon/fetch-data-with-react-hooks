@@ -27,19 +27,26 @@ function App() {
 
   return (
     <Fragment>
-      <input
-        type='text'
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-      />
-      <button
-        type='button'
-        onClick={() =>
-          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`)
-        }
+      <form
+        onSubmit={(event) => {
+          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`);
+          event.preventDefault();
+        }}
       >
-        Search
-      </button>
+        <input
+          type='text'
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <button
+          type='button'
+          onClick={() =>
+            setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`)
+          }
+        >
+          Search
+        </button>
+      </form>
 
       {isError && <div>Something went wrong ...</div>}
 
