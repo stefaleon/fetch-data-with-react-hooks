@@ -4,17 +4,17 @@ import axios from 'axios';
 function App() {
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState('hack');
-  const [searchterm, setSearchterm] = useState('hack');
+  const [url, setUrl] = useState(
+    'https://hn.algolia.com/api/v1/search?query=hack'
+  );
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        `https://hn.algolia.com/api/v1/search?query=${searchterm}`
-      );
+      const result = await axios(url);
       setData(result.data);
     };
     fetchData();
-  }, [searchterm]);
+  }, [url]);
 
   return (
     <Fragment>
@@ -23,7 +23,12 @@ function App() {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      <button type='button' onClick={() => setSearchterm(query)}>
+      <button
+        type='button'
+        onClick={() =>
+          setUrl(`http://hn.algolia.com/api/v1/search?query=${query}`)
+        }
+      >
         Search
       </button>
       <ul>
