@@ -1,0 +1,11 @@
+$ surge build
+
+   Running as stefaleon@gmail.com (Student)
+
+        project: build
+         domain: hnapi.surge.sh
+         upload: [====================] 100% eta: 0.0s (18 files, 622171 bytes)
+            CDN: [====================] 100%
+             IP: 45.55.110.124
+
+   Success! - Published to hnapi.surge.sh
