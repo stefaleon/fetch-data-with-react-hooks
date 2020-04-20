@@ -1,11 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useHackerNewsApi = () => {
-  const [data, setData] = useState({ hits: [] });
-  const [url, setUrl] = useState(
-    'https://hn.algolia.com/api/v1/search?query=hack'
-  );
+const useDataApi = (initialUrl, initialData) => {
+  const [data, setData] = useState(initialData);
+  const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -29,7 +27,12 @@ const useHackerNewsApi = () => {
 
 function App() {
   const [query, setQuery] = useState('hack');
-  const [{ data, isLoading, isError }, doFetch] = useHackerNewsApi();
+  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+    'https://hn.algolia.com/api/v1/search?query=hack',
+    {
+      hits: [],
+    }
+  );
 
   return (
     <Fragment>
